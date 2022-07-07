@@ -13,7 +13,7 @@ const Browse = ({ getMovies, moviesByGenre, isLoading, error }) => {
   }, [getMovies]);
 
   return (
-    <div className="bg-netflix-bg-gray">
+    <div className="bg-netflix-bg-gray min-h-screen">
       <BrowseNavbar />
       <div>
         {moviesByGenre?.map((genre, index) => (
