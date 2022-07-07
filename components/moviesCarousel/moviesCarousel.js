@@ -20,7 +20,6 @@ function useWindowSize() {
 const MoviesCarousel = ({ movies, title, myKey }) => {
   const sliderRef = useRef(null);
   const [sliderItems, setSliderItems] = useState([...movies]);
-  const [firstSliderItems, setFirstSliderItems] = useState([]);
   const [wasSlide, setWasSlide] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
 
@@ -49,19 +48,24 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
         );
         sliderItemsCopy.unshift.apply(sliderItemsCopy, lastItems);
       } else {
-        sliderRef.current.style.transform = wasSlide
-          ? `translate(calc(-200% - 100% / ${moviesPerSlice}))`
-          : "translate(-100%)";
-        const firstElements = sliderItemsCopy.splice(0, moviesPerSlice); // remove first items and saved
-        sliderItemsCopy.push.apply(sliderItemsCopy, firstElements); // push first items at the end
+        if (!wasSlide) {
+          const lastItem = sliderItemsCopy.pop();
+          sliderItemsCopy.unshift(lastItem);
+          sliderRef.current.style.transform = "translate(-100%)";
+        } else {
+          const firstElements = sliderItemsCopy.splice(0, moviesPerSlice); // remove first items and saved
+          sliderItemsCopy.push.apply(sliderItemsCopy, firstElements); // push first items at the end
+          sliderRef.current.style.transform = `translate(calc(-200% - 100% / ${moviesPerSlice}))`;
+        }
       }
       setTimeout(() => {
         sliderRef.current.style.transition = "none"; // remove the transition animation
-        setIsMoving(false);
-        setWasSlide(true);
         setSliderItems(sliderItemsCopy); // set the updated slider items array
+        sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
       }, 540);
       setTimeout(() => {
+        setWasSlide(true);
+        setIsMoving(false);
         sliderRef.current.style.transition =
           "transform .54s cubic-bezier(0.4, 0, 1, 1) 0s"; // add the transition animation
       }, 600);
@@ -69,15 +73,10 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
   };
 
   useEffect(() => {
-    if (wasSlide && !isMoving) {
-      const lastItems = sliderItems.slice(
-        sliderItems.length - moviesPerSlice - 1,
-        sliderItems.length
-      );
-      setFirstSliderItems(lastItems);
+    if (wasSlide) {
       sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
     }
-  }, [moviesPerSlice, sliderItems, wasSlide, isMoving]);
+  }, [moviesPerSlice, wasSlide]);
 
   return (
     <div className="overflow-hidden my-[3vw]" key={myKey}>
@@ -100,8 +99,8 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
         >
           <Slider
             movies={sliderItems}
-            firstItems={firstSliderItems}
             myRef={sliderRef}
+            wasSlide={wasSlide}
             moviesPerSlice={moviesPerSlice}
           />
         </div>
