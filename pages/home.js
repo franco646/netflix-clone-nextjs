@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import HomeNavbar from "../components/navbars/homeNavbar";
 import Background from "../components/background/background";
 import EmailForm from "../components/forms/emailForm";
