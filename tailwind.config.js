@@ -6,6 +6,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      md: "500px",
+      lg: "800px",
+      xl: "980px",
+    },
     extend: {
       fontFamily: {
         netflix: "NetflixSansRegular",
@@ -13,14 +18,25 @@ module.exports = {
       spacing: {
         "%5": "5%",
       },
+      boxShadow: {
+        "3xl": "rgba(0, 0, 0, 75%) 0px 3px 10px",
+      },
       colors: {
         "netflix-red": "#e50914",
         "netflix-bg-gray": "#141414",
         "gray-1": "#b3b3b3",
         "gray-2": "#e5e5e5",
         "gray-3": "#4b4b4b",
+        "modal-text-green": "#46d369",
+        "modal-black": "#181818",
+        "modal-button": "rgba(42,42,42,.6)",
+        "modal-button-hover": "rgba(255, 255, 255, 0.1)",
+        "modal-button-border": "rgba(255,255,255,.5)",
+        "modal-gradient": "linear-gradient(to top, #181818, transparent 50%)",
         "login-card": "rgba(0,0,0,.75)",
         "gray-4": "rgba(31, 31, 31, 0.75)",
+        "carousel-button": "rgba(20, 20, 20, 0.5)",
+        "carousel-button-hover": "rgba(20, 20, 20, 0.7)",
       },
       backgroundImage: {
         "background-gradient":
