@@ -1,18 +1,43 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
-const SliderItem = ({ movie, className }) => {
+import { connect } from "react-redux";
+
+import { showModal, setModalData } from "../../redux/actions/modal.actions";
+
+const SliderItem = ({ movie, corner, showModal, setModalData }) => {
+  let timer;
+
+  const showSliderModal = (e) => {
+    timer = setTimeout(() => {
+      const { top, width, height, left } = e.target.getBoundingClientRect();
+      setModalData(movie);
+      showModal({ top, width, height, left, corner });
+    }, 400);
+  };
+
+  const cancelModalOpening = () => {
+    clearTimeout(timer);
+  };
+
   return (
     <div
-      className={`${className} relative inline-block box-border whitespace-normal align-top w-6/12 h-[calc((100vw-8vw)/2*0.562)] md:w-4/12 md:h-[calc((100vw-8vw)/3*0.562)] lg:w-3/12 lg:h-[calc((100vw-8vw)/4*0.562)] xl:w-1/5 xl:h-[calc((100vw-8vw)/5*0.562)]`}
+      onMouseEnter={showSliderModal}
+      onMouseLeave={cancelModalOpening}
+      className="relative inline-block box-border whitespace-normal align-top w-6/12 h-[calc((100vw-8vw)/2*0.562)] md:w-4/12 md:h-[calc((100vw-8vw)/3*0.562)] lg:w-3/12 lg:h-[calc((100vw-8vw)/4*0.562)] xl:w-1/5 xl:h-[calc((100vw-8vw)/5*0.562)] rounded overflow-hidden px-0.5"
     >
-      <Image
+      <img
         alt="Mountains"
-        src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
         layout="fill"
-        objectFit="contain"
+        objectfit="contain"
       />
     </div>
   );
 };
 
-export default SliderItem;
+const mapDispatchToProps = (dispatch) => ({
+  showModal: (position) => dispatch(showModal(position)),
+  setModalData: (data) => dispatch(setModalData(data)),
+});
+
+export default connect(null, mapDispatchToProps)(SliderItem);
