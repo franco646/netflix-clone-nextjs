@@ -68,19 +68,16 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
     }
   };
 
-  if (wasSlide && !isMoving) {
-    sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
-  }
-
   useEffect(() => {
-    if (wasSlide) {
+    if (wasSlide && !isMoving) {
       const lastItems = sliderItems.slice(
         sliderItems.length - moviesPerSlice - 1,
         sliderItems.length
       );
       setFirstSliderItems(lastItems);
+      sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
     }
-  }, [moviesPerSlice, sliderItems, wasSlide]);
+  }, [moviesPerSlice, sliderItems, wasSlide, isMoving]);
 
   return (
     <div className="overflow-hidden my-[3vw]" key={myKey}>
