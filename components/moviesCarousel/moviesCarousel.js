@@ -57,17 +57,20 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
       }
       setTimeout(() => {
         sliderRef.current.style.transition = "none"; // remove the transition animation
-        setSliderItems(sliderItemsCopy); // set the updated slider items array
+        setIsMoving(false);
         setWasSlide(true);
-        sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
+        setSliderItems(sliderItemsCopy); // set the updated slider items array
       }, 540);
       setTimeout(() => {
-        setIsMoving(false);
         sliderRef.current.style.transition =
           "transform .54s cubic-bezier(0.4, 0, 1, 1) 0s"; // add the transition animation
       }, 600);
     }
   };
+
+  if (wasSlide && !isMoving) {
+    sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
+  }
 
   useEffect(() => {
     if (wasSlide) {
