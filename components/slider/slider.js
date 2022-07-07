@@ -1,19 +1,23 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
 import SliderItem from "../sliderItem/sliderItem";
 
-// checkear si basis es necesario
-
-const Slider = ({ movies, myRef, handleEndOfTransition }) => {
+const Slider = ({ movies, moviesPerSlice, myRef, firstItems }) => {
   return (
-    <div className="px-[4%] relative touch-pan-y">
-      <div
-        className="overflow-x-visible ease-in duration-[.54s]"
-        ref={myRef}
-        onTransitionEnd={handleEndOfTransition}
-      >
+    <div className="px-[4%] relative touch-pan-y z-0">
+      <div className="overflow-x-visible ease-in duration-[.54s]" ref={myRef}>
         <div className="whitespace-nowrap">
-          {movies?.map((movie, i) => {
+          {firstItems?.map((movie, i) => {
             return <SliderItem movie={movie} key={i} />;
+          })}
+          {movies?.map((movie, i) => {
+            return (
+              <SliderItem
+                movie={movie}
+                key={i}
+                corner={
+                  i === 0 ? "left" : i === moviesPerSlice - 1 ? "right" : ""
+                }
+              />
+            );
           })}
         </div>
       </div>
