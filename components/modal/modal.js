@@ -21,13 +21,15 @@ const Modal = ({ modal, closeModal }) => {
           : ""
       }`}
     >
-      <div className="relative">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${modal?.modalData?.backdrop_path}`}
-          layout="fill"
-          objectFit="contain"
-          alt="pelicula"
-        />
+      <div>
+        <div className="relative">
+          <img
+            src={`https://image.tmdb.org/t/p/w500${modal?.modalData?.backdrop_path}`}
+            layout="fill"
+            objectfit="contain"
+            alt={`Fondo de la pelicula ${modal?.modalData?.original_title}`}
+          />
+        </div>
       </div>
       <div className="opacity-0 group-hover:opacity-100">
         <ModalInfo />
