@@ -9,9 +9,9 @@ const SliderItem = ({ movie, corner, showModal, setModalData }) => {
 
   const showSliderModal = (e) => {
     timer = setTimeout(() => {
-      const { top, width, height, left } = e.target.getBoundingClientRect();
+      const { top, width, left } = e.target.getBoundingClientRect();
       setModalData(movie);
-      showModal({ top, width, height, left, corner });
+      showModal({ top, width, left, corner });
     }, 400);
   };
 
