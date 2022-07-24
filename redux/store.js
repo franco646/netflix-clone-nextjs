@@ -13,4 +13,4 @@ const reducer = {
 
 const makeStore = (context) => configureStore({ reducer });
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore);
