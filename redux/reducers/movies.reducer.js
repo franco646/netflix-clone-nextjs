@@ -4,13 +4,15 @@ import {
   moviesRequestSuccess,
   moviesRequestFailure,
   setMoviesGenres,
+  setBrowseLink,
 } from "../actions/moviesCommon.actions";
 
 const initialState = {
   movies: [],
+  genres: [],
   isLoading: false,
   error: null,
-  genres: [],
+  browseLink: "/",
 };
 
 const modalReducer = createReducer(initialState, (builder) => {
@@ -21,6 +23,9 @@ const modalReducer = createReducer(initialState, (builder) => {
     .addCase(moviesRequestSuccess, (state, action) => {
       state.isLoading = false;
       state.movies = action.payload;
+    })
+    .addCase(setBrowseLink, (state, action) => {
+      state.browseLink = action.payload;
     })
     .addCase(moviesRequestFailure, (state, action) => {
       state.isLoading = false;
