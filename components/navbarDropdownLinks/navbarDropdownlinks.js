@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { connect } from "react-redux";
 import NavbarLink from "../navbarLink/navbarLink";
 
 const NavbarDropdownLinks = () => {
@@ -12,10 +11,10 @@ const NavbarDropdownLinks = () => {
           </div>
         </div>
         <div className="hidden group-hover:block group-hover:absolute group-hover:-translate-x-1/2 group-hover:left-1/2 lg:group-hover:flex lg:group-hover:relative lg:flex text-center lg:border-none border-gray-3 border-[1px] bg-login-card lg:bg-transparent min-w-[260px] lg:min-w-fit">
-          <NavbarLink href="/browse">Inicio</NavbarLink>
-          <NavbarLink href="/browse/series">Series</NavbarLink>
-          <NavbarLink href="/browse/movies">Peliculas</NavbarLink>
-          <NavbarLink href="/browse/top">Novedades Populares</NavbarLink>
+          <NavbarLink link="/">Inicio</NavbarLink>
+          <NavbarLink link="/series">Series</NavbarLink>
+          <NavbarLink link="/movies">Peliculas</NavbarLink>
+          <NavbarLink link="/top">Novedades Populares</NavbarLink>
         </div>
       </div>
     </div>
