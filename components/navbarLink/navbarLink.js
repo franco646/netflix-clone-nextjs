@@ -1,13 +1,26 @@
-import Link from "next/link";
+import { connect } from "react-redux";
 
-const NavbarLink = ({ href, children }) => {
+import { setBrowseLink } from "../../redux/actions/moviesCommon.actions";
+
+const NavbarLink = ({ link, children, currentLink, setBrowseLink }) => {
   return (
-    <Link href={href} passHref>
-      <div className="text-gray-2 lg:hover:text-gray-1 cursor-pointer lg:ml-4 text-sm lg:py-0 lg:px-0 py-3 px-4 hover:bg-gray-4 lg:hover:bg-inherit leading-7">
-        {children}
-      </div>
-    </Link>
+    <div
+      onClick={() => setBrowseLink(link)}
+      className={`${
+        link === currentLink ? "text-white font-bold" : "text-gray-2"
+      } lg:hover:text-gray-1 cursor-pointer lg:ml-4 text-sm lg:py-0 lg:px-0 py-3 px-4 hover:bg-gray-4 lg:hover:bg-inherit leading-7`}
+    >
+      {children}
+    </div>
   );
 };
 
-export default NavbarLink;
+const mapStateToProps = (state) => ({
+  currentLink: state.movies.browseLink,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setBrowseLink: (link) => dispatch(setBrowseLink(link)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarLink);
