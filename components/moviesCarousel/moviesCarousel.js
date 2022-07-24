@@ -86,7 +86,7 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
       <div className="relative group">
         {wasSlide ? (
           <button
-            className="absolute rounded-r-sm text-white hover: bg-carousel-button hover:bg-carousel-button-hover left-0  top-0 bottom-[calc(0px+2px)] w-[calc(4%-2px)] z-10"
+            className="absolute rounded-r-sm text-white hover: bg-carousel-button hover:bg-carousel-button-hover left-0  top-0 bottom-0 w-[calc(4%-2px)] z-10"
             onClick={() => handleClick("left")}
           >
             <BsChevronLeft className="hidden group-hover:block hover:scale-125 h-full w-full" />
@@ -105,7 +105,7 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
           />
         </div>
         <button
-          className="absolute rounded-l-sm text-white bg-carousel-button hover:bg-carousel-button-hover right-0  top-0 bottom-[calc(0px+2px)] w-[calc(4%-2px)] z-10"
+          className="absolute rounded-l-sm text-white bg-carousel-button hover:bg-carousel-button-hover right-0  top-0 bottom-0 w-[calc(4%-2px)] z-10"
           onClick={() => handleClick("right")}
         >
           <BsChevronRight className="hidden group-hover:block hover:scale-125 h-full w-full" />
