@@ -34,7 +34,9 @@ const ModalInfo = ({ modal, genres }) => {
         <ModalButton icon={<AiOutlineDown />} />
       </div>
       <div>
-        <span className="text-modal-text-green text-xs">98% para ti</span>
+        <span className="text-modal-text-green text-xs">
+          {Math.floor(Math.random() * (50 + 1) + 50)}% para ti
+        </span>
         <span className="text-xs text-gray-1 ml-3">
           {modal?.modalData?.first_air_date?.split("-")[0] ||
             modal?.modalData?.release_date?.split("-")[0]}
