@@ -9,7 +9,7 @@ const AccountDropdown = ({}) => {
         <ProfilePicture src="/profile-picture-1.png" />
         <AiFillCaretDown className="relative ml-1 text-white h-8 group-hover:rotate-180 duration-150" />
       </div>
-      <div className="hidden group-hover:block group-hover:absolute right-%5 lg:right-14 md:right-11 py-2.5 leading-8 border-gray-3  text-sm border-[1px] min-w-[180px]">
+      <div className="hidden group-hover:block group-hover:absolute right-%5 lg:right-14 md:right-11 py-2.5 leading-8 border-gray-3  text-sm border-[1px] min-w-[180px] bg-login-card">
         <div className="flex p-1.5 cursor-pointer">
           <ProfilePicture src="/profile-picture-1.png" />
           <div className="text-white ml-2.5 hover:underline">primer</div>
