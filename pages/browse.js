@@ -11,6 +11,7 @@ import {
   getTvSeries,
   getTopMovies,
 } from "../redux/actions/moviesCommon.actions";
+import Billboard from "../components/billboard/billboard";
 
 const Browse = ({
   getBrowseMovies,
@@ -38,15 +39,16 @@ const Browse = ({
   return (
     <div className="bg-netflix-bg-gray min-h-screen">
       <BrowseNavbar />
-      <div>
+      <Billboard />
+      <div className="mt-[43vw]">
         {moviesByGenre?.map((genre, index) => (
-            <MoviesCarousel
-              myKey={index}
-              key={index}
-              movies={genre.movies}
-              title={genre.title}
-            />
-          ))}
+          <MoviesCarousel
+            myKey={index}
+            key={index}
+            movies={genre.movies}
+            title={genre.title}
+          />
+        ))}
       </div>
       <Modal />
     </div>
