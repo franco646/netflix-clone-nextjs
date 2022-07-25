@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { connect } from "react-redux";
 
+import Image from "next/image";
+
 import { closeModal } from "../../redux/actions/modal.actions";
 import ModalInfo from "../modalInfo/modalInfo";
 
 const Modal = ({ modal, closeModal }) => {
-  return modal.visibility === "visible" ? (
+  return modal.visibility === "visible" && modal.modalData ? (
     <div
       onMouseLeave={closeModal}
       style={{
@@ -23,12 +25,14 @@ const Modal = ({ modal, closeModal }) => {
     >
       <div>
         <div className="relative">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${modal?.modalData?.backdrop_path}`}
-            layout="fill"
-            objectfit="contain"
-            alt={`Fondo de la pelicula ${modal?.modalData?.original_title}`}
-          />
+          <div className="relative w-full h-[calc((100vw-8vw)/2*0.562)] md:h-[calc((100vw-8vw)/3*0.562)] lg:h-[calc((100vw-8vw)/4*0.562)] xl:h-[calc((100vw-8vw)/5*0.562)]">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${modal?.modalData?.backdrop_path}`}
+              layout="fill"
+              objectfit="contain"
+              alt={`Fondo de la pelicula ${modal?.modalData?.original_title}`}
+            />
+          </div>
         </div>
       </div>
       <div className="opacity-0 group-hover:opacity-100">
