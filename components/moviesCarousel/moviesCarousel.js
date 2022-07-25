@@ -80,7 +80,7 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
 
   return (
     <div className="overflow-hidden my-[3vw]" key={myKey}>
-      <h2 className="text-white font-bold leading-[1.4vw] text-xs lg:text-[1.4vw] mx-[4%] mb-2 mt-0 lg:mt-1">
+      <h2 className="text-white font-bold leading-[1.4vw] relative text-xs lg:text-[1.4vw] mx-[4%] mb-2 mt-0 lg:mt-1">
         {title}
       </h2>
       <div className="relative group">
