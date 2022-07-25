@@ -19,12 +19,14 @@ const awaitTimeout = (delay) =>
 
 export const showModal = createAsyncThunk(
   "modal/showModal",
-  async (position, { dispatch, getState }) => {
+  async (data, { dispatch, getState }) => {
+    const { movieData, modalPosition } = data;
     const { modal } = getState();
     if (modal.visibility === "visible") {
       await dispatch(closeModal());
     }
-    dispatch(setModalPosition(position));
+    dispatch(setModalData(movieData));
+    dispatch(setModalPosition(modalPosition));
     dispatch(setModalVisibility("visible"));
   }
 );
