@@ -6,6 +6,8 @@ const Background = ({ className, isZoomed }) => {
       <Image
         src="/background.jpg"
         alt="Background"
+        placeholder="blur"
+        blurDataURL="/background.jpg"
         layout="fill"
         objectFit="cover"
         className={isZoomed ? "scale-125" : ""}
