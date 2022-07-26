@@ -20,6 +20,7 @@ const Browse = ({
   getTopMovies,
   browseLink,
   moviesByGenre,
+  isLoading,
 }) => {
   useEffect(() => {
     if (browseLink === "/") {
@@ -41,14 +42,16 @@ const Browse = ({
       <BrowseNavbar />
       <Billboard />
       <div className="mt-[43vw]">
-        {moviesByGenre?.map((genre, index) => (
-          <MoviesCarousel
-            myKey={index}
-            key={index}
-            movies={genre.movies}
-            title={genre.title}
-          />
-        ))}
+        {isLoading
+          ? null
+          : moviesByGenre?.map((genre, index) => (
+              <MoviesCarousel
+                myKey={index}
+                key={index}
+                movies={genre.movies}
+                title={genre.title}
+              />
+            ))}
       </div>
       <Modal />
     </div>
