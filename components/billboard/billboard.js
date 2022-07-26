@@ -3,7 +3,6 @@
 import { connect } from "react-redux";
 
 const Billboard = ({ billboardMovie }) => {
-  console.log(billboardMovie);
   return (
     <div className="absolute top-0 z-0 overflow-hidden">
       <img
