@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { showModal } from "../../redux/actions/modal.actions";
 
-const SliderItem = ({ movie, corner, showModal }) => {
+const SliderItem = ({ movie, corner, showModal, priority }) => {
   let timer;
 
   const showSliderModal = (e) => {
@@ -30,6 +30,7 @@ const SliderItem = ({ movie, corner, showModal }) => {
       <div className="relative h-full w-full">
         <Image
           placeholder="blur"
+          loading="eager"
           blurDataURL={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
           alt="Mountains"
           src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
