@@ -10,6 +10,7 @@ import {
 const initialState = {
   movies: [],
   genres: [],
+  billboardMovie: [],
   isLoading: false,
   error: null,
   browseLink: "/",
@@ -23,6 +24,10 @@ const modalReducer = createReducer(initialState, (builder) => {
     .addCase(moviesRequestSuccess, (state, action) => {
       state.isLoading = false;
       state.movies = action.payload;
+      state.billboardMovie =
+        action.payload[0].movies[
+          Math.floor(Math.random() * action.payload[0].movies.length)
+        ];
     })
     .addCase(setBrowseLink, (state, action) => {
       state.browseLink = action.payload;
