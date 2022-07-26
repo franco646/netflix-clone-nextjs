@@ -7,7 +7,7 @@ const fetchMoviesByTrending = async (
   title = "Tendencias"
 ) => {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/trending/${apiCallType}/day?api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/trending/${apiCallType}/day?api_key=${API_KEY}&language=es-MX`
   );
   return [{ title, movies: response.data.results }];
 };
