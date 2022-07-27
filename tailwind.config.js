@@ -38,6 +38,7 @@ module.exports = {
         "gray-4": "rgba(31, 31, 31, 0.75)",
         "carousel-button": "rgba(20, 20, 20, 0.5)",
         "carousel-button-hover": "rgba(20, 20, 20, 0.7)",
+        "more-info-button": "rgba(109, 109, 110, 0.7)",
       },
       backgroundImage: {
         "navbar-gradient":
