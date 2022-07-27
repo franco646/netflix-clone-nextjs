@@ -2,9 +2,11 @@
 
 import { connect } from "react-redux";
 
+import { BsPlayFill, BsInfoCircle } from "react-icons/bs";
+
 const Billboard = ({ billboardMovie }) => {
   return (
-    <div className="absolute top-0 z-0 overflow-hidden">
+    <div className="absolute top-0 z-0 overflow-hidden bg-netflix-bg-gray w-full">
       <img
         className="w-full h-[56.25vw]"
         alt={`${billboardMovie?.title || billboardMovie?.name} backdrop`}
@@ -21,10 +23,18 @@ const Billboard = ({ billboardMovie }) => {
         <div className="text-white text-[1.2vw]">
           {billboardMovie?.overview}
         </div>
-        <div>
-          <button>Repodrucir</button>
-          <button>Mas informacion</button>
-        </div>
+        {billboardMovie.title || billboardMovie.name ? (
+          <div className="flex mt-[1.5vw] whitespace-nowrap leading-[88%] relative">
+            <button className="px-5 md:px-[8] bg-white text-black mb-4 mr-4 rounded p-3 whitespace-nowrap flex font-bold text-[.7rem] md:text-[1rem]">
+              <BsPlayFill className="md:scale-[2] scale-150 mr-2 md:mr-4 mt-0.5 md:mt-0" />
+              Repodrucir
+            </button>
+            <button className="px-5 md:px-[8] bg-more-info-button text-white mb-4 mr-4 rounded p-3 whitespace-nowrap flex font-bold text-[.7rem] md:text-[1rem]">
+              <BsInfoCircle className="scale-150 mr-2 md:mr-4 mt-0.5 md:mt-0" />
+              Mas informacion
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
