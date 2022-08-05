@@ -1,7 +1,11 @@
 import { useEffect } from "react";
+
+import { useRouter } from "next/router";
+
 import Modal from "../components/modal/modal";
 import MoviesCarousel from "../components/moviesCarousel/moviesCarousel";
 import BrowseNavbar from "../components/navbars/browseNavbar";
+import LoadingSpinner from "../components/loadingSpinner/loadingSpinner";
 
 import { connect } from "react-redux";
 
@@ -12,6 +16,8 @@ import {
   getTopMovies,
 } from "../redux/actions/moviesCommon.actions";
 import Billboard from "../components/billboard/billboard";
+import Footer from "../components/footer/footer";
+import ProfileSelector from "../components/profileSelector/profileSelector";
 
 const Browse = ({
   getBrowseMovies,
@@ -19,9 +25,12 @@ const Browse = ({
   getMovies,
   getTopMovies,
   browseLink,
+  user,
   moviesByGenre,
   isLoading,
 }) => {
+  const router = useRouter();
+
   useEffect(() => {
     if (browseLink === "/") {
       getBrowseMovies();
@@ -37,23 +46,38 @@ const Browse = ({
     }
   }, [getBrowseMovies, browseLink, getTvSeries, getMovies, getTopMovies]);
 
+  if (!user.isLogged) {
+    router.push({ pathname: "/login" });
+  }
+
   return (
     <div className="bg-netflix-bg-gray min-h-screen">
-      <BrowseNavbar />
-      <Billboard />
-      <div className="mt-[43vw]">
-        {isLoading
-          ? null
-          : moviesByGenre?.map((genre, index) => (
-              <MoviesCarousel
-                myKey={index}
-                key={index}
-                movies={genre.movies}
-                title={genre.title}
-              />
-            ))}
-      </div>
-      <Modal />
+      {!user?.selectedProfile ? (
+        <ProfileSelector />
+      ) : (
+        <div>
+          <BrowseNavbar />
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <div>
+              <Billboard />
+              <div className="mt-[43vw]">
+                {moviesByGenre?.map((genre, index) => (
+                  <MoviesCarousel
+                    myKey={index}
+                    key={index}
+                    movies={genre.movies}
+                    title={genre.title}
+                  />
+                ))}
+              </div>
+              <Footer />
+            </div>
+          )}
+          <Modal />
+        </div>
+      )}
     </div>
   );
 };
@@ -63,6 +87,7 @@ const mapStateToProps = (state) => ({
   moviesByGenre: state.movies.movies,
   isLoading: state.movies.isLoading,
   error: state.movies.error,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
