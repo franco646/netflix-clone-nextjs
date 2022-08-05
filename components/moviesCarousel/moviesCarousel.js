@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import Slider from "../slider/slider";
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -18,10 +18,11 @@ function useWindowSize() {
 }
 
 const MoviesCarousel = ({ movies, title, myKey }) => {
-  const sliderRef = useRef(null);
   const [sliderItems, setSliderItems] = useState([...movies]);
   const [wasSlide, setWasSlide] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [translation, setTranslation] = useState(0);
+  const [isAnimated, setIsAnimated] = useState(false);
 
   let moviesPerSlice = 5;
   const [width] = useWindowSize();
@@ -41,40 +42,39 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
       setIsMoving(true);
       const sliderItemsCopy = [...sliderItems];
       if (direction === "left") {
-        sliderRef.current.style.transform = `translate(calc(-100% / ${moviesPerSlice}))`;
         const lastItems = sliderItemsCopy.splice(
           sliderItems.length - moviesPerSlice,
           sliderItems.length
         );
         sliderItemsCopy.unshift.apply(sliderItemsCopy, lastItems);
+        setTranslation(-100 / moviesPerSlice);
       } else {
         if (!wasSlide) {
           const lastItem = sliderItemsCopy.pop();
           sliderItemsCopy.unshift(lastItem);
-          sliderRef.current.style.transform = "translate(-100%)";
+          setTranslation(-100);
         } else {
           const firstElements = sliderItemsCopy.splice(0, moviesPerSlice); // remove first items and saved
           sliderItemsCopy.push.apply(sliderItemsCopy, firstElements); // push first items at the end
-          sliderRef.current.style.transform = `translate(calc(-200% - 100% / ${moviesPerSlice}))`;
+          setTranslation(-200 - 100 / moviesPerSlice);
         }
       }
       setTimeout(() => {
-        sliderRef.current.style.transition = "none"; // remove the transition animation
-        setSliderItems(sliderItemsCopy); // set the updated slider items array
-        sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
-      }, 540);
-      setTimeout(() => {
         setWasSlide(true);
+        setIsAnimated(false);
+        setTranslation(-100 - 100 / moviesPerSlice);
+        setSliderItems(sliderItemsCopy); // set the updated slider items array
+      }, 750);
+      setTimeout(() => {
         setIsMoving(false);
-        sliderRef.current.style.transition =
-          "transform .54s cubic-bezier(0.4, 0, 1, 1) 0s"; // add the transition animation
-      }, 600);
+        setIsAnimated(true);
+      }, 800);
     }
   };
 
   useEffect(() => {
     if (wasSlide) {
-      sliderRef.current.style.transform = `translate(calc(-100% - 100% / ${moviesPerSlice}))`;
+      setTranslation(-100 - 100 / moviesPerSlice);
     }
   }, [moviesPerSlice, wasSlide]);
 
@@ -98,8 +98,9 @@ const MoviesCarousel = ({ movies, title, myKey }) => {
           }`}
         >
           <Slider
+            translation={translation}
+            isAnimated={isAnimated}
             movies={sliderItems}
-            myRef={sliderRef}
             wasSlide={wasSlide}
             moviesPerSlice={moviesPerSlice}
           />
