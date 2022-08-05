@@ -10,7 +10,7 @@ const NavbarDropdownLinks = () => {
             Explorar
           </div>
         </div>
-        <div className="hidden group-hover:block group-hover:absolute group-hover:-translate-x-1/2 group-hover:left-1/2 lg:group-hover:flex lg:group-hover:relative lg:flex text-center lg:border-none border-gray-3 border-[1px] bg-login-card lg:bg-transparent min-w-[260px] lg:min-w-fit">
+        <div className="invisible top-[52px] lg:top-0 delay-100 lg:visible group-hover:visible absolute -translate-x-1/2 lg:translate-x-0 left-1/2 lg:left-0 lg:relative lg:flex text-center lg:border-none border-gray-3 border-[1px] bg-login-card lg:bg-transparent min-w-[260px] lg:min-w-fit">
           <NavbarLink link="/">Inicio</NavbarLink>
           <NavbarLink link="/series">Series</NavbarLink>
           <NavbarLink link="/movies">Peliculas</NavbarLink>
