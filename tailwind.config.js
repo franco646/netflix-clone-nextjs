@@ -1,5 +1,3 @@
-const tailwindScrollbarHide = require("tailwind-scrollbar-hide");
-
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -41,6 +39,7 @@ module.exports = {
         "more-info-button": "rgba(109, 109, 110, 0.7)",
       },
       backgroundImage: {
+        "lading-spinner": "url('/site-spinner.png')",
         "navbar-gradient":
           "linear-gradient(180deg, rgba(0, 0, 0, .7) 10%, transparent)",
         "billboar-bottom-gradient":
@@ -52,5 +51,4 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindScrollbarHide],
 };
