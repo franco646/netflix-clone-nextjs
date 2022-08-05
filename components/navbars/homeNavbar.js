@@ -9,18 +9,22 @@ const HomeNavbar = () => {
       <div className="relative flex flex-nowrap justify-between items-center h-full">
         <div className="relative h-full w-24 md:w-28 lg:w-32 cursor-pointer">
           <Link href="/" passHref>
-            <Image
-              layout="fill"
-              objectFit="contain"
-              src="/netflix-logo.png"
-              alt="Netflix Logo"
-            />
+            <a>
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src="/netflix-logo.png"
+                alt="Netflix Logo"
+              />
+            </a>
           </Link>
         </div>
         <Link href="/login" passHref>
-          <LoginButton className="py-1 px-2 md:px-4 md:py-2 rounded">
-            Iniciar sesion
-          </LoginButton>
+          <a>
+            <LoginButton className="py-1 px-2 md:px-4 md:py-2 rounded">
+              Iniciar sesion
+            </LoginButton>
+          </a>
         </Link>
       </div>
     </nav>
