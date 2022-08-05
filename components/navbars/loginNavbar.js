@@ -7,12 +7,14 @@ const LoginNavbar = () => {
       <div className="flex flex-nowrap justify-between items-center h-full">
         <div className="relative h-full w-20 sm:w-44 cursor-pointer">
           <Link href="/" passHref>
-            <Image
-              layout="fill"
-              objectFit="contain"
-              src="/netflix-logo.png"
-              alt="Netflix Logo"
-            />
+            <a>
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src="/netflix-logo.png"
+                alt="Netflix Logo"
+              />
+            </a>
           </Link>
         </div>
       </div>
