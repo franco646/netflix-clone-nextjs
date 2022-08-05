@@ -1,10 +1,15 @@
+import Link from "next/link";
+
+import { connect } from "react-redux";
+
+import { login } from "../redux/actions/user.actions";
+
 import Background from "../components/background/background";
 import LoginNavbar from "../components/navbars/loginNavbar";
 import Input from "../components/input/input";
 import LoginButton from "../components/buttons/loginButton";
-import Link from "next/link";
 
-const Login = () => {
+const Login = ({ login }) => {
   return (
     <div className="flex justify-center items-center h-screen py-12 px-[5%] bg-black">
       <Background className="hidden md:block" isZoomed />
@@ -18,9 +23,14 @@ const Login = () => {
           <Input type="password" id="password-input" label="Contraseña" />
         </div>
         <Link href="/browse" passHref>
-          <LoginButton className="mt-6 mb-1.5 h-12 w-full rounded font-bold">
-            Iniciar sesion
-          </LoginButton>
+          <a>
+            <LoginButton
+              className="mt-6 mb-1.5 h-12 w-full rounded font-bold"
+              onClick={login}
+            >
+              Iniciar sesion
+            </LoginButton>
+          </a>
         </Link>
         <div className="flex justify-between items-center">
           <div>
@@ -43,4 +53,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  login: () => dispatch(login()),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
