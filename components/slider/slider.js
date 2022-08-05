@@ -1,9 +1,20 @@
 import SliderItem from "../sliderItem/sliderItem";
 
-const Slider = ({ movies, moviesPerSlice, wasSlide, myRef }) => {
+const Slider = ({
+  movies,
+  moviesPerSlice,
+  translation,
+  isAnimated,
+  wasSlide,
+}) => {
   return (
     <div className="px-[4%] relative touch-pan-y z-0">
-      <div className="overflow-x-visible ease-in duration-[.54s]" ref={myRef}>
+      <div
+        className={`overflow-x-visible ${
+          isAnimated || !wasSlide ? "ease duration-[.75s]" : ""
+        }`}
+        style={{ transform: `translateX(${translation}%)` }}
+      >
         <div className="whitespace-nowrap">
           {movies?.slice(0, moviesPerSlice * 3 + 2).map((movie, i) => {
             return (
