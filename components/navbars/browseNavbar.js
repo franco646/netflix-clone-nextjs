@@ -27,18 +27,16 @@ const BrowseNavbar = () => {
       } px-%5 lg:px-14 md:px-11 h-11 md:h-16  z-10 fixed inset-x-0 top-0 duration-500`}
     >
       <div className="flex flex-nowrap justify-between items-center h-full">
-        <div className="relative h-full w-20 cursor-pointer">
-          <Link href="/" passHref>
-            <a>
-              <Image
-                layout="fill"
-                objectFit="contain"
-                src="/netflix-logo.png"
-                alt="Netflix Logo"
-              />
-            </a>
-          </Link>
-        </div>
+        <Link href="/" passHref>
+          <a className="relative h-full w-20 cursor-pointer">
+            <Image
+              layout="fill"
+              objectFit="contain"
+              src="/netflix-logo.png"
+              alt="Netflix Logo"
+            />
+          </a>
+        </Link>
         <NavbarDropdownLinks />
         <AccountDropdown />
       </div>
