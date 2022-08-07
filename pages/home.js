@@ -8,10 +8,10 @@ const Home = () => {
       <Background />
       <HomeNavbar />
       <div className="relative max-w-4xl text-center w-full">
-        <h1 className="text-3xl sm:text-5xl font-bold text-white">
+        <h1 className="sm:text-3xl text-5xl font-bold text-white">
           Películas y series ilimitadas y mucho más.
         </h1>
-        <h2 className="text-xl sm:text-3xl my-4 text-white">
+        <h2 className="sm:text-xl text-3xl my-4 text-white">
           Disfruta donde quieras. Cancela cuando quieras.
         </h2>
         <div className="mx-[5%] md:mx-auto w-auto md:w-[680px] h-12 md:h-14">
